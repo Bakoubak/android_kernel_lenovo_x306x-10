@@ -9,6 +9,7 @@
 #
 # Normal rules
 #
+
 .*
 *.o
 *.o.*
@@ -40,6 +41,17 @@ vmlinux
 *.dwo
 *.su
 *.c.[012]*.*
+
+#
+# Out
+#
+out/System.map
+out/Include/generated/*
+out/kernel/config_data.h
+out/arch/arm64/boot/*
+out/arch/arm64/vdso/vsdo.lds
+out/arch/arm64/vmlinux.lds
+out/arch/arm64/include/config/*
 
 #
 # Top-level generic files
