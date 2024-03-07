@@ -2009,9 +2009,9 @@ static void himax_mcu_flash_programming(uint8_t *FW_content, int FW_Size)
 
 		for (i = page_prog_start, j = 0;
 		i < 16 + page_prog_start;
-		i++, j++)
+		i++, j++) {	
 			buring_data[j + ADDR_LEN_4] = FW_content[i];
-
+		}
 			ret = himax_bus_write(pic_op->addr_ahb_addr_byte_0[0],
 				buring_data,
 				ADDR_LEN_4 + 16,

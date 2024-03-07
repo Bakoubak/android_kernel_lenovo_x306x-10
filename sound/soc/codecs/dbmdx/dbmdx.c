@@ -10068,9 +10068,10 @@ static ssize_t dbmdx_fw_ver_show(struct device *dev,
 		cur_active_fw = p->active_fw;
 		if (p->va_chip_enabled) {
 
-			if (p->active_interface_type_va != DBMDX_CMD_INTERFACE)
+			if (p->active_interface_type_va != DBMDX_CMD_INTERFACE) {
 				return snprintf(buf, PAGE_SIZE,
 					"VA chip is not in a cmd mode\n");
+				}
 
 				ret = dbmdx_switch_to_va_chip_interface(p,
 					DBMDX_CMD_INTERFACE);
@@ -10094,11 +10095,10 @@ static ssize_t dbmdx_fw_ver_show(struct device *dev,
 		}
 		if (p->va_ve_chip_enabled) {
 
-			if (p->active_interface_type_va_ve !=
-							DBMDX_CMD_INTERFACE)
+			if (p->active_interface_type_va_ve != DBMDX_CMD_INTERFACE) {
 				return snprintf(buf, PAGE_SIZE,
 					"VA_VE chip is not in a cmd mode\n");
-
+			}
 				ret = dbmdx_switch_to_va_ve_chip_interface(p,
 					DBMDX_CMD_INTERFACE);
 				if (ret) {
