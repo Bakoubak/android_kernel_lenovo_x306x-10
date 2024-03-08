@@ -536,7 +536,9 @@ CLANG_FLAGS	+= -Werror=unknown-warning-option
 KBUILD_CFLAGS	+= $(CLANG_FLAGS)
 KBUILD_AFLAGS	+= $(CLANG_FLAGS)
 endif
-
+ifneq ($(LLVM),)
+KBUILD_CFLAGS += -fuse-ld=lld
+endif
 
 ifeq ($(mixed-targets),1)
 # ===========================================================================
