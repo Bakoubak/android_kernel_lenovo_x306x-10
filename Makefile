@@ -638,8 +638,8 @@ all: vmlinux
 ifeq ($(cc-name),clang)
 ifneq ($(CROSS_COMPILE),)
 CLANG_FLAGS    := --target=$(notdir $(CROSS_COMPILE:%-=%))
-GCC_TOOLCHAIN   := $(realpath $(dir $(shell which $(LD)))/..)
-CLANG_FLAGS		+= --prefix=$(dir $(shell which $(LD)))/..
+GCC_TOOLCHAIN   := $(realpath $(dir $(shell which $(CROSS_COMPILE)elfedit))/..)
+CLANG_FLAGS		+= --prefix=$(dir $(shell which $(CROSS_COMPILE)elfedit))/..
 endif
 ifneq ($(GCC_TOOLCHAIN),)
 CLANG_FLAGS    += --gcc-toolchain=$(GCC_TOOLCHAIN)
