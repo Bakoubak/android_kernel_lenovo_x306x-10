@@ -36,6 +36,7 @@
 *.ll
 modules.builtin
 Module.symvers
+vmlinux
 *.dwo
 *.su
 *.c.[012]*.*
