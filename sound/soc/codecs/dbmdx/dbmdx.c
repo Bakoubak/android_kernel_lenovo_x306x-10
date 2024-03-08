@@ -10072,25 +10072,25 @@ static ssize_t dbmdx_fw_ver_show(struct device *dev,
 				return snprintf(buf, PAGE_SIZE,
 					"VA chip is not in a cmd mode\n");
 
-				ret = dbmdx_switch_to_va_chip_interface(p,
-					DBMDX_CMD_INTERFACE);
-				if (ret) {
-					dev_err(p->dev,
-					"%s Error switching to VA interface\n",
-					__func__);
-					return -EIO;
-				}
-				off += snprintf(buf + off, PAGE_SIZE - off,
-					"%s version information\n",
-					dbmdx_fw_type_to_str(p->active_fw));
-				off += snprintf(buf + off, PAGE_SIZE - off,
-					"===============================\n");
-				off += snprintf(buf + off, PAGE_SIZE - off,
-					"VA Chip Version: ");
+			ret = dbmdx_switch_to_va_chip_interface(p,
+				DBMDX_CMD_INTERFACE);
+			if (ret) {
+				dev_err(p->dev,
+				"%s Error switching to VA interface\n",
+				__func__);
+				return -EIO;
+			}
+			off += snprintf(buf + off, PAGE_SIZE - off,
+				"%s version information\n",
+				dbmdx_fw_type_to_str(p->active_fw));
+			off += snprintf(buf + off, PAGE_SIZE - off,
+				"===============================\n");
+			off += snprintf(buf + off, PAGE_SIZE - off,
+				"VA Chip Version: ");
 
-				off += dbmdx_reg_show(dev,
-						DBMDX_REGN_FW_VERSION_NUMBER,
-						attr, buf + off);
+			off += dbmdx_reg_show(dev,
+					DBMDX_REGN_FW_VERSION_NUMBER,
+					attr, buf + off);
 		}
 		if (p->va_ve_chip_enabled) {
 
@@ -10099,21 +10099,21 @@ static ssize_t dbmdx_fw_ver_show(struct device *dev,
 				return snprintf(buf, PAGE_SIZE,
 					"VA_VE chip is not in a cmd mode\n");
 
-				ret = dbmdx_switch_to_va_ve_chip_interface(p,
-					DBMDX_CMD_INTERFACE);
-				if (ret) {
-					dev_err(p->dev,
-					"%s Error switching to (VA_VE) int.\n",
-					__func__);
-					return -EIO;
-				}
+			ret = dbmdx_switch_to_va_ve_chip_interface(p,
+				DBMDX_CMD_INTERFACE);
+			if (ret) {
+				dev_err(p->dev,
+				"%s Error switching to (VA_VE) int.\n",
+				__func__);
+				return -EIO;
+			}
 
-				off += snprintf(buf + off, PAGE_SIZE - off,
-					"VA_VE Chip Version:");
+			off += snprintf(buf + off, PAGE_SIZE - off,
+				"VA_VE Chip Version:");
 
-				off += dbmdx_reg_show(dev,
-						DBMDX_REGN_FW_VERSION_NUMBER,
-						attr, buf + off);
+			off += dbmdx_reg_show(dev,
+					DBMDX_REGN_FW_VERSION_NUMBER,
+					attr, buf + off);
 		}
 
 		if (p->va_chip_enabled && (cur_active_fw == DBMDX_FW_VA)) {

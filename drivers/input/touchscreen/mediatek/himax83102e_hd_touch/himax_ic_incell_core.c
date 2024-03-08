@@ -2007,15 +2007,12 @@ static void himax_mcu_flash_programming(uint8_t *FW_content, int FW_Size)
 		for (i = 0; i < ADDR_LEN_4; i++)
 			buring_data[i] = pflash_op->addr_spi200_data[i];
 
-		for (i = page_prog_start, j = 0;
-		i < 16 + page_prog_start;
-		i++, j++)
+		for (i = page_prog_start, j = 0; i < 16 + page_prog_start;
+			i++, j++)
 			buring_data[j + ADDR_LEN_4] = FW_content[i];
-
-			ret = himax_bus_write(pic_op->addr_ahb_addr_byte_0[0],
-				buring_data,
-				ADDR_LEN_4 + 16,
-				HIMAX_I2C_RETRY_TIMES);
+		
+		ret = himax_bus_write(pic_op->addr_ahb_addr_byte_0[0],
+			buring_data, ADDR_LEN_4 + 16, HIMAX_I2C_RETRY_TIMES);
 		if (ret < 0) {
 			E("%s: i2c access fail!\n", __func__);
 			return;
