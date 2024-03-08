@@ -349,7 +349,7 @@ include scripts/Kbuild.include
 ifneq ($(LLVM),)
 AS			= llvm-as
 LD			= ld.lld
-CC			= clang
+CC			= ccache clang
 AR			= llvm-ar
 NM			= llvm-nm
 STRIP		= llvm-strip
