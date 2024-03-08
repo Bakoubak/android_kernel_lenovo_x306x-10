@@ -859,7 +859,7 @@ again:
 		if ((L2RISAR0 & CLDMA_RX_INT_DONE & (1 << queue->index))
 			&& !(!blocking && ret == ONCE_MORE))
 			retry = 1;
-		else {
+		else
 			retry = 0;
 		/* where are we going */
 			if (retry) {
@@ -879,7 +879,6 @@ again:
 					flags);
 				goto again;
 			}
-		}
 	}
 	spin_unlock_irqrestore(&md_ctrl->cldma_timeout_lock, flags);
 
