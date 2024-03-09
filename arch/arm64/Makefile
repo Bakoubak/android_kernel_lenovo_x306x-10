@@ -71,7 +71,7 @@ KBUILD_CFLAGS	+= $(call cc-option, -mpc-relative-literal-loads)
 KBUILD_CFLAGS	+= -fno-pic
 KBUILD_AFLAGS	+= $(lseinstr)
 
-ifeq ($(LD), ld.lld)
+ifeq ($(LLVM),)
 LDFLAGS += -m aarch64linux
 endif
 
