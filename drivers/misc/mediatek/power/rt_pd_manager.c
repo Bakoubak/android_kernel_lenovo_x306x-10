@@ -155,7 +155,7 @@ bool mtk_is_pep30_en_unlock(void)
 	return false;
 }
 
-
+bool dock_charger(void);
 
 bool dock_charger()
 {
