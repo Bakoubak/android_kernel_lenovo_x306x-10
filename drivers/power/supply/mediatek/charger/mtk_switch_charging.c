@@ -101,6 +101,8 @@ static void _disable_all_charging(struct charger_manager *info)
 		mtk_pdc_reset(info);
 }
 
+bool is_dock_charger(void);
+
 bool is_dock_charger()
 {
 	union power_supply_propval reta = {0,};

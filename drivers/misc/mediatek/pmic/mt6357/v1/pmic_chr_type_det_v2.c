@@ -342,6 +342,8 @@ int hw_charging_get_charger_type(void)
 	return CHR_Type_num;
 }
 
+bool dock_chargered(void);
+
 bool dock_chargered()
 {
 	union power_supply_propval reta = {0,};

@@ -9,8 +9,11 @@
 # for more details.
 #
 # Copyright (C) 1995-2001 by Russell King
-
+ifneq ($(LLVM),)
+LDFLAGS_vmlinux	:=--no-undefined -X -z norelro
+else
 LDFLAGS_vmlinux	:=--no-undefined -X
+endif
 CPPFLAGS_vmlinux.lds = -DTEXT_OFFSET=$(TEXT_OFFSET)
 GZFLAGS		:=-9
 
@@ -18,8 +21,13 @@ ifeq ($(CONFIG_RELOCATABLE), y)
 # Pass --no-apply-dynamic-relocs to restore pre-binutils-2.27 behaviour
 # for relative relocs, since this leads to better Image compression
 # with the relocation offsets always being zero.
+ifneq ($(LLVM),)
+LDFLAGS_vmlinux		+= -shared -Bsymbolic -z notext \
+			$(call ld-option, --no-apply-dynamic-relocs)
+else
 LDFLAGS_vmlinux		+= -pie -shared -Bsymbolic \
 			$(call ld-option, --no-apply-dynamic-relocs)
+endif
 endif
 
 ifeq ($(CONFIG_ARM64_ERRATUM_843419),y)
@@ -62,6 +70,10 @@ KBUILD_CFLAGS	+= -fno-asynchronous-unwind-tables
 KBUILD_CFLAGS	+= $(call cc-option, -mpc-relative-literal-loads)
 KBUILD_CFLAGS	+= -fno-pic
 KBUILD_AFLAGS	+= $(lseinstr)
+
+ifeq ($(LLVM),)
+LDFLAGS += -m aarch64linux
+endif
 
 ifeq ($(CONFIG_CPU_BIG_ENDIAN), y)
 KBUILD_CPPFLAGS	+= -mbig-endian
