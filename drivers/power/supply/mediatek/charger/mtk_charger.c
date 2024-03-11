@@ -1622,7 +1622,7 @@ stop_charging:
 
 	info->can_charging = charging;
 }
-
+bool check_dock_charger(void);
 
 bool check_dock_charger()
 {

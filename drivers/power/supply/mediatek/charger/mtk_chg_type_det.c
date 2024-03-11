@@ -355,6 +355,7 @@ static void plug_in_out_handler(struct chg_type_info *cti, bool en, bool ignore)
 	mutex_unlock(&cti->chgdet_lock);
 }
 
+bool is_dock_in(void);
 
 bool is_dock_in()
 {
