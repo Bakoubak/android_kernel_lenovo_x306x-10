@@ -3451,7 +3451,7 @@ err_create_ts_resume_wq_failed:
 err_register_charger_notify_failed:
     if (ts->charger_detection) {
         if (ts->charger_detection->charger_notif.notifier_call)
-            power_supply_unreg_notifier(&ts->charger_detection->charger_notif);
+            	power_supply_unreg_notifier(&ts->charger_detection->charger_notif);
             destroy_workqueue(ts->charger_detection->himax_charger_notify_wq);
             ts->charger_detection->himax_charger_notify_wq = NULL;
             kfree(ts->charger_detection);
