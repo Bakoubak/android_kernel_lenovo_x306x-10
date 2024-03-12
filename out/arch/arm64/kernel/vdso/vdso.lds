@@ -4,7 +4,7 @@
 /*
  *
  * Automatically generated file; DO NOT EDIT.
- * Linux/arm64 4.9.195 Kernel Configuration
+ * Linux/arm64 4.9.198 Kernel Configuration
  *
  */
 
