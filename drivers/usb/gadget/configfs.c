@@ -88,6 +88,7 @@ int check_user_usb_string(const char *name,
 
 static const struct usb_descriptor_header *otg_desc[2];
 
+
 struct gadget_info {
 	struct config_group group;
 	struct config_group functions_group;
@@ -107,7 +108,12 @@ struct gadget_info {
 	char qw_sign[OS_STRING_QW_SIGN_LEN];
 	spinlock_t spinlock;
 	bool unbind;
-};
+#ifdef CONFIG_USB_CONFIGFS_UEVENT
+	bool connected;
+	bool sw_connected;
+	struct work_struct work;
+	struct device *dev;
+#endif
 
 static inline struct gadget_info *to_gadget_info(struct config_item *item)
 {
